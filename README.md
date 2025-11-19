@@ -55,11 +55,13 @@ npm start
 
 ## Vad jag valde att bygga först
 
-Jag prioriterade att få hela huvudflödet att fungera stabilt: från att användaren klistrar in en brief → att den skickas till webhooken → att agentkedjan genererar en komplett programmatris och tillhörande innehåll → att resultatet renderas tydligt i UI:t. Fokus låg på robust kommunikation mellan frontend och agentlogiken samt ett normaliserat JSON-format som alltid kommer tillbaka i samma struktur.
+Jag prioriterade att få hela huvudflödet att fungera stabilt: från att användaren klistrar in en brief → att den skickas till webhooken → att agentkedjan genererar en komplett programmatris och tillhörande innehåll → att resultatet renderas tydligt i UI:t. Fokus låg på att få ner en grundläggande struktur som sessions, kapitel och artiklar. Samt ett normaliserat JSON-format som alltid kommer tillbaka i samma struktur.
 
 ## Vad jag förenklade för att spara tid
 
-##Jag höll UI:t medvetet enkelt utan autentisering, states eller avancerade komponenter. Jag använde en rak modellkedja i stället för mer avancerad orkestrering. Jag la också tid på att förbättra promptar och minimera hallucinationer, inklusive en separat research-agent och en Tavily-subnod för faktasökning, men utan att gå för djupt i agentkonfiguration eller finjustering.
+Jag använde en rak modellkedja i stället för mer avancerad orkestrering. Jag la också tid på att förbättra promptar och minimera hallucinationer, inklusive en separat research-agent och en Tavily-subnod för faktasökning, men utan att gå för djupt i agentkonfiguration eller finjustering. Skulle vara bra att använda en RAG för att hitta relevant information när det gäller te.x EU regler då dessa ändras konstant. 
+
+Dessutom fokuserade jag inte särskilt mycket på quizz frågorna, ger några exempel i outputen men det var ingen prioritet för mig eftersom de kan byggas upp med informationen man har från föregående steg.
 
 ## Vad jag lämnade utanför
 
