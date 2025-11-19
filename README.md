@@ -15,6 +15,8 @@ En Next.js-applikation som genererar träningsprogram baserat på kundbriefar. A
 
 ## Kom igång
 
+## Link: https://curious-duckanoo-6533b7.netlify.app/
+
 ### Förutsättningar
 
 * Node.js 18+
