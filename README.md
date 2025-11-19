@@ -51,6 +51,33 @@ npm start
 4. Det genererade träningsprogrammet visas i gränssnittet
 5. Användaren kan ladda ner materialet som JSON eller TXT
 
+
+## Vad jag prioriterade:
+
+Stabilt flöde från brief → webhook → genererat innehåll
+Fokus låg på att säkerställa att användaren kan mata in en brief, att den skickas korrekt till webhooken, samt att resultatet visas tydligt i UI:t.
+
+Robust kommunikation mellan klienten och AI-agenterna
+Jag prioriterade att integrationen med webhooken och agentkedjan fungerar.
+
+Normaliserat JSON-format
+Jag såg till att datan som kommer tillbaka alltid följer samma struktur, vilket gör den lättare att rendera, validera och eventuellt spara senare.
+
+Hög kvalitet på prompts och minimering av hallucinationer
+Stor del av tiden gick till att förbättra LLM-promptar, skapa tydliga instruktioner och säkerställa konsekventa svar, separerade även agent uppgifter för att uppnå detta.
+Jag implementerade även en Tavily-subnod för att reducera hallucinationer ytterligare genom faktasökning.
+
+
+## Lämnade utanför:
+En nod som skulle validera struktur och innehåll i slutresultatet implementerades inte.
+All data hanteras i minnet. Det finns ingen historik, ingen cachning och inga användarsessioner.
+Det finns basskydd mot krascher, men ingen omfattande loggning, retry-logik, timeout-strategi eller robusta fallback-scenarier.
+Fokus låg på korrekt funktionalitet snarare än snabbhet eller skalbarhet.
+
+
+
+
+
 ## Webhook-konfiguration
 
 Webhook-URL:en ställs in i `app/api/generate/route.ts`. Webhooken ska returnera JSON på följande format:
@@ -107,31 +134,3 @@ pacy/
 ---
 
 
-
-## Vad jag prioriterade:
-
-Stabilt flöde från brief → webhook → genererat innehåll
-Fokus låg på att säkerställa att användaren kan mata in en brief, att den skickas korrekt till webhooken, samt att resultatet visas tydligt i UI:t.
-
-Robust kommunikation mellan klienten och AI-agenterna
-Jag prioriterade att integrationen med webhooken och agentkedjan fungerar pålitligt utan avbrott.
-
-Normaliserat JSON-format
-Jag såg till att datan som kommer tillbaka alltid följer samma struktur, vilket gör den lättare att rendera, validera och eventuellt spara senare.
-
-Hög kvalitet på prompts och minimering av hallucinationer
-Stor del av tiden gick till att förbättra LLM-promptar, skapa tydliga instruktioner och säkerställa konsekventa svar.
-Jag implementerade även en Tavily-subnod för att reducera hallucinationer ytterligare genom faktasökning.
-
-## Lämnade utanför:
-En sista kvalitetskontrollnod
-Planerad nod som skulle validera struktur och innehåll i slutresultatet implementerades inte.
-
-Ingen persistent lagring (ingen databas)
-All data hanteras i minnet. Det finns ingen historik, ingen cachning och inga användarsessioner.
-
-Endast grundläggande felhantering
-Det finns basskydd mot krascher, men ingen omfattande loggning, retry-logik, timeout-strategi eller robusta fallback-scenarier.
-
-Ingen prestandaoptimering
-Fokus låg på korrekt funktionalitet snarare än snabbhet eller skalbarhet.
