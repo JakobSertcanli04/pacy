@@ -54,27 +54,17 @@ npm start
 5. Användaren kan ladda ner materialet som JSON eller TXT
 
 
-## Vad jag prioriterade:
+## Vad jag valde att bygga först
 
-Stabilt flöde från brief → webhook → genererat innehåll
-Fokus låg på att säkerställa att användaren kan mata in en brief, att den skickas korrekt till webhooken, samt att resultatet visas tydligt i UI:t.
+Jag prioriterade att få hela huvudflödet att fungera stabilt: från att användaren klistrar in en brief → att den skickas till webhooken → att agentkedjan genererar en komplett programmatris och tillhörande innehåll → att resultatet renderas tydligt i UI:t. Fokus låg på robust kommunikation mellan frontend och agentlogiken samt ett normaliserat JSON-format som alltid kommer tillbaka i samma struktur.
 
-Robust kommunikation mellan klienten och AI-agenterna
-Jag prioriterade att integrationen med webhooken och agentkedjan fungerar.
+## Vad jag förenklade för att spara tid
 
-Normaliserat JSON-format
-Jag såg till att datan som kommer tillbaka alltid följer samma struktur, vilket gör den lättare att rendera, validera och eventuellt spara senare.
+##Jag höll UI:t medvetet enkelt utan autentisering, states eller avancerade komponenter. Jag använde en rak modellkedja i stället för mer avancerad orkestrering. Jag la också tid på att förbättra promptar och minimera hallucinationer, inklusive en separat research-agent och en Tavily-subnod för faktasökning, men utan att gå för djupt i agentkonfiguration eller finjustering.
 
-Hög kvalitet på prompts och minimering av hallucinationer
-Stor del av tiden gick till att förbättra LLM-promptar, skapa tydliga instruktioner och säkerställa konsekventa svar, separerade även agent uppgifter för att uppnå detta.
-Jag implementerade även en Tavily-subnod för att reducera hallucinationer ytterligare genom faktasökning.
+## Vad jag lämnade utanför
 
-
-## Lämnade utanför:
-En nod som skulle validera struktur och innehåll i slutresultatet implementerades inte.
-All data hanteras i minnet. Det finns ingen historik, ingen cachning och inga användarsessioner.
-Det finns basskydd mot krascher, men ingen omfattande loggning, retry-logik, timeout-strategi eller robusta fallback-scenarier.
-Fokus låg på korrekt funktionalitet snarare än snabbhet eller skalbarhet.
+Jag implementerade ingen separat valideringsnod för slutresultatet. All data lagras i minnet utan historik, caching eller sessionshantering. Jag byggde heller ingen avancerad loggning, retry-logik, timeouts eller fallback-strategier. Fokus var funktionalitet och tydlig struktur – inte skalbarhet eller produktionssäkerhet.
 
 
 
