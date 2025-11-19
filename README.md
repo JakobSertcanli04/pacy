@@ -65,7 +65,7 @@ Dessutom fokuserade jag inte särskilt mycket på quizz frågorna, ger några ex
 
 ## Vad jag lämnade utanför
 
-Jag implementerade ingen separat valideringsnod för slutresultatet. All data lagras i minnet utan historik, caching eller sessionshantering. Jag byggde heller ingen avancerad loggning, retry-logik, timeouts eller fallback-strategier. Fokus var funktionalitet och tydlig struktur – inte skalbarhet eller produktionssäkerhet.
+Jag implementerade ingen separat valideringsnod för slutresultatet. All data lagras i minnet utan historik, caching eller sessionshantering. Jag byggde heller ingen avancerad loggning, retry-logik, timeouts eller fallback-strategier. Mitt fokus var funktionalitet och tydlig struktur.
 
 
 ## Exempel
