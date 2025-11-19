@@ -1,6 +1,6 @@
 'use client'
 
-import { TrainingProgram } from '../app/page'
+import { TrainingProgram } from '../types'
 
 interface GeneratedContentProps {
   program: TrainingProgram
