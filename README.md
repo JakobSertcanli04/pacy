@@ -1,101 +1,100 @@
-# Pacy Training Program Generator
+Pacy Träningsprogramgenerator
 <img width="1058" height="199" alt="image" src="https://github.com/user-attachments/assets/5fb3a879-b5f3-47ed-8e38-31b8a114ff79" />
 
-A Next.js application that generates training programs from client briefs. The app connects to a webhook that orchestrates multiple AI agents (topic research, writer agent, quality control) to create comprehensive training materials.
+En Next.js-applikation som genererar träningsprogram utifrån kundbriefar. Appen kopplar till en webhook som orkestrerar flera AI-agenter (ämnesforskning, skrivaragent, kvalitetskontroll) för att skapa heltäckande utbildningsmaterial.
 
-## Features
+Funktioner
 
-- **Client Brief Input**: Simple web interface to paste client briefs
-- **Training Program Matrix**: Generates 3 chapters with 9-12 sessions, each with a WIIFM (What's In It For Me)
-- **Articles**: Generates 1-2 example text articles (800-1000 words each)
-- **Quiz Questions**: Creates quiz questions with multiple choice options
-- **Download Support**: Export generated content as JSON or TXT files
+Inmatning av kundbrief: Enkel webbvy där man kan klistra in kundens brief
 
-## Getting Started
+Träningsprogrammatris: Genererar 3 kapitel med 9–12 sessioner, varje med ett WIIFM (What's In It For Me)
 
-### Prerequisites
+Artiklar: Genererar 1–2 exempelartiklar (800–1000 ord vardera)
 
-- Node.js 18+ and npm
+Quizfrågor: Skapar flervalsfrågor med svarsalternativ
 
-### Installation
+Nedladdning: Exportera genererat innehåll som JSON- eller TXT-filer
 
-1. Install dependencies:
-```bash
+Kom igång
+Förutsättningar
+
+Node.js 18+ och npm
+
+Installation
+
+Installera beroenden:
+
 npm install
-```
 
-2. Run the development server:
-```bash
+
+Starta utvecklingsservern:
+
 npm run dev
-```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-### Build for Production
+Öppna http://localhost:3000
+ i din webbläsare
 
-```bash
+Bygg för produktion
 npm run build
 npm start
-```
 
-## How It Works
+Hur det fungerar
 
-1. User pastes a client brief in the web interface
-2. The app sends the brief to the configured webhook endpoint
-3. The webhook orchestrates multiple AI agents
-4. The generated training program is displayed in the UI
-5. Users can download the content as JSON
+Användaren klistrar in en kundbrief i webbgränssnittet
 
-## Webhook Configuration
+Appen skickar briefen till den konfigurerade webhook-endpointen
 
-The webhook URL is configured in `app/api/generate/route.ts`. The webhook should return JSON in the following format:
+Webhooken orkestrerar flera AI-agenter
 
-```json
+Det genererade träningsprogrammet visas i gränssnittet
+
+Användare kan ladda ner innehållet som JSON
+
+Webhook-konfiguration
+
+Webhook-URL:en konfigureras i app/api/generate/route.ts. Webhooken ska returnera JSON i följande format:
+
 {
   "chapters": [
     {
-      "title": "Chapter Title",
+      "title": "Kapiteltitel",
       "sessions": [
         {
-          "title": "Session Title",
-          "wiifm": "What's in it for me description"
+          "title": "Sessionstitel",
+          "wiifm": "Beskrivning av vad man får ut av sessionen"
         }
       ]
     }
   ],
   "articles": [
     {
-      "title": "Article Title",
-      "content": "Article content...",
+      "title": "Artikelrubrik",
+      "content": "Artikelinnehåll...",
       "wordCount": 850
     }
   ],
   "quizQuestions": [
     {
-      "question": "Question text?",
-      "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+      "question": "Frågetext?",
+      "options": ["Alternativ 1", "Alternativ 2", "Alternativ 3", "Alternativ 4"],
       "correctAnswer": 0,
-      "explanation": "Explanation text"
+      "explanation": "Förklaring"
     }
   ]
 }
-```
 
-## Project Structure
-
-```
+Projektstruktur
 pacy/
 ├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Main page component
+│   ├── layout.tsx           # Root-layout
+│   ├── page.tsx             # Huvudsida
 │   └── api/
 │       └── generate/
-│           └── route.ts    # API route for webhook integration
+│           └── route.ts     # API-route för webhook-integration
 ├── components/
-│   ├── BriefInput.tsx      # Brief input form
-│   └── GeneratedContent.tsx # Content display and download
+│   ├── BriefInput.tsx       # Formulär för brief-inmatning
+│   └── GeneratedContent.tsx # Visning och nedladdning av genererat innehåll
 ├── package.json
 ├── tsconfig.json
 └── next.config.js
-```
-
