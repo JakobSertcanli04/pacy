@@ -41,12 +41,9 @@ npm start
 
 1. User pastes a client brief in the web interface
 2. The app sends the brief to the configured webhook endpoint
-3. The webhook orchestrates multiple AI agents:
-   - **Topic Research Agent**: Researches and identifies key topics
-   - **Writer Agent**: Creates content (sessions, articles, questions)
-   - **Quality Control Agent**: Reviews and refines the output
+3. The webhook orchestrates multiple AI agents
 4. The generated training program is displayed in the UI
-5. Users can download the content as JSON or TXT files
+5. Users can download the content as JSON
 
 ## Webhook Configuration
 
