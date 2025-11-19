@@ -3,7 +3,7 @@
 
 <img width="1058" height="199" alt="image" src="https://github.com/user-attachments/assets/5fb3a879-b5f3-47ed-8e38-31b8a114ff79" />
 
-En Next.js-applikation som genererar träningsprogram baserat på kundbriefar. Applikationen kopplar mot en webhook som använder flera AI-agenter (ämnesresearch, skrivande, kvalitetskontroll) för att skapa komplett utbildningsmaterial.
+En Next.js-applikation som genererar träningsprogram baserat på kundbriefar. Applikationen kopplar mot en webhook som använder flera AI-agenter för att skapa komplett utbildningsmaterial.
 
 ## Funktioner
 
