@@ -60,7 +60,7 @@ Jag la också tid på att förbättra promptar och minimera hallucinationer, ink
 
 ## Vad jag förenklade för att spara tid
 
-Jag använde en rak modellkedja i stället för mer avancerad orkestrering, testade kort med en orkestrering men det ledde till för mycket hallucinationer. Skulle vara bra att använda en RAG för att hämta relevant information när det gäller te.x EU regler då dessa ändras konstant. 
+Jag använde en rak modellkedja i stället för andra ramverk som parent agent, testade kort med denna orkestrering men det ledde till för mycket hallucinationer. Skulle vara bra att använda en RAG för att hämta relevant information när det gäller te.x EU regler då dessa ändras konstant. 
 
 Dessutom fokuserade jag inte särskilt mycket på quizz frågorna, ger några exempel i outputen men det var ingen prioritet för mig eftersom de kan byggas upp med informationen man har från föregående steg.
 
