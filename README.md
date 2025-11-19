@@ -15,7 +15,7 @@ En Next.js-applikation som genererar träningsprogram baserat på kundbriefar. A
 
 ## Kom igång
 
-## Link: https://691e039b078b7d1f6ed91369--curious-duckanoo-6533b7.netlify.app/
+## Länk: [Pacy Training Program Generator](https://some-new-onboarding.up.railway.app/)
 ### Förutsättningar
 
 * Node.js 18+
