@@ -1,103 +1,136 @@
-# Pacy Training Program Generator
 
-A Next.js application that generates training programs from client briefs. The app connects to a webhook that orchestrates multiple AI agents (topic research, writer agent, quality control) to create comprehensive training materials.
+# Pacy Träningsprogramgenerator
 
-## Features
+<img width="1058" height="199" alt="image" src="https://github.com/user-attachments/assets/5fb3a879-b5f3-47ed-8e38-31b8a114ff79" />
 
-- **Client Brief Input**: Simple web interface to paste client briefs
-- **Training Program Matrix**: Generates 3 chapters with 9-12 sessions, each with a WIIFM (What's In It For Me)
-- **Articles**: Generates 1-2 example text articles (800-1000 words each)
-- **Quiz Questions**: Creates quiz questions with multiple choice options
-- **Download Support**: Export generated content as JSON or TXT files
+En Next.js-applikation som genererar träningsprogram baserat på kundbriefar. Applikationen kopplar mot en webhook som använder flera AI-agenter (ämnesresearch, skrivande, kvalitetskontroll) för att skapa komplett utbildningsmaterial.
 
-## Getting Started
+## Funktioner
 
-### Prerequisites
+* **Inmatning av kundbrief** via ett enkelt webbaserat formulär
+* **Träningsprogrammatris** med 3 kapitel och totalt 9–12 sessioner, alla med WIIFM (What's In It For Me)
+* **Artiklar** på 800–1000 ord, 1–2 stycken per program
+* **Quizfrågor** med flervalsalternativ och förklaringar
+* **Nedladdning** av genererat innehåll som JSON- eller TXT-filer
 
-- Node.js 18+ and npm
+## Kom igång
+
+### Förutsättningar
+
+* Node.js 18+
+* npm
 
 ### Installation
 
-1. Install dependencies:
+1. Installera beroenden:
+
 ```bash
 npm install
 ```
 
-2. Run the development server:
+2. Starta utvecklingsservern:
+
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Öppna `http://localhost:3000` i webbläsaren.
 
-### Build for Production
+### Bygg för produktion
 
 ```bash
 npm run build
 npm start
 ```
 
-## How It Works
+## Hur det fungerar
 
-1. User pastes a client brief in the web interface
-2. The app sends the brief to the configured webhook endpoint
-3. The webhook orchestrates multiple AI agents:
-   - **Topic Research Agent**: Researches and identifies key topics
-   - **Writer Agent**: Creates content (sessions, articles, questions)
-   - **Quality Control Agent**: Reviews and refines the output
-4. The generated training program is displayed in the UI
-5. Users can download the content as JSON or TXT files
+1. Användaren klistrar in en kundbrief i applikationen
+2. Briefen skickas till en konfigurerad webhook
+3. Webhooken orkestrerar flera AI-agenter
+4. Det genererade träningsprogrammet visas i gränssnittet
+5. Användaren kan ladda ner materialet som JSON eller TXT
 
-## Webhook Configuration
 
-The webhook URL is configured in `app/api/generate/route.ts`. The webhook should return JSON in the following format:
+## Vad jag prioriterade:
+
+Stabilt flöde från brief → webhook → genererat innehåll
+Fokus låg på att säkerställa att användaren kan mata in en brief, att den skickas korrekt till webhooken, samt att resultatet visas tydligt i UI:t.
+
+Robust kommunikation mellan klienten och AI-agenterna
+Jag prioriterade att integrationen med webhooken och agentkedjan fungerar.
+
+Normaliserat JSON-format
+Jag såg till att datan som kommer tillbaka alltid följer samma struktur, vilket gör den lättare att rendera, validera och eventuellt spara senare.
+
+Hög kvalitet på prompts och minimering av hallucinationer
+Stor del av tiden gick till att förbättra LLM-promptar, skapa tydliga instruktioner och säkerställa konsekventa svar, separerade även agent uppgifter för att uppnå detta.
+Jag implementerade även en Tavily-subnod för att reducera hallucinationer ytterligare genom faktasökning.
+
+
+## Lämnade utanför:
+En nod som skulle validera struktur och innehåll i slutresultatet implementerades inte.
+All data hanteras i minnet. Det finns ingen historik, ingen cachning och inga användarsessioner.
+Det finns basskydd mot krascher, men ingen omfattande loggning, retry-logik, timeout-strategi eller robusta fallback-scenarier.
+Fokus låg på korrekt funktionalitet snarare än snabbhet eller skalbarhet.
+
+
+
+
+
+## Webhook-konfiguration
+
+Webhook-URL:en ställs in i `app/api/generate/route.ts`. Webhooken ska returnera JSON på följande format:
 
 ```json
 {
   "chapters": [
     {
-      "title": "Chapter Title",
+      "title": "Kapiteltitel",
       "sessions": [
         {
-          "title": "Session Title",
-          "wiifm": "What's in it for me description"
+          "title": "Sessionstitel",
+          "wiifm": "Vad deltagaren får ut av sessionen"
         }
       ]
     }
   ],
   "articles": [
     {
-      "title": "Article Title",
-      "content": "Article content...",
+      "title": "Artikelrubrik",
+      "content": "Artikelinnehåll...",
       "wordCount": 850
     }
   ],
   "quizQuestions": [
     {
-      "question": "Question text?",
-      "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+      "question": "Frågetext?",
+      "options": ["Alternativ 1", "Alternativ 2", "Alternativ 3", "Alternativ 4"],
       "correctAnswer": 0,
-      "explanation": "Explanation text"
+      "explanation": "Förklaring"
     }
   ]
 }
 ```
 
-## Project Structure
+## Projektstruktur
 
 ```
 pacy/
 ├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Main page component
+│   ├── layout.tsx             # Root-layout
+│   ├── page.tsx               # Huvudsida
 │   └── api/
 │       └── generate/
-│           └── route.ts    # API route for webhook integration
+│           └── route.ts       # API-route för webhook-integration
 ├── components/
-│   ├── BriefInput.tsx      # Brief input form
-│   └── GeneratedContent.tsx # Content display and download
+│   ├── BriefInput.tsx         # Formulär för brief-inmatning
+│   └── GeneratedContent.tsx   # Visning och nedladdning av innehåll
 ├── package.json
 ├── tsconfig.json
 └── next.config.js
 ```
+
+---
+
 
