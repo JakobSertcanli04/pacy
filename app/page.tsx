@@ -35,7 +35,20 @@ export default function Home() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to generate program')
+        // Try to get error message from response
+        let errorMessage = `Request failed with status ${response.status}`
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorMessage
+        } catch {
+          try {
+            const errorText = await response.text()
+            if (errorText) errorMessage = errorText.substring(0, 200)
+          } catch {
+            // Use default error message
+          }
+        }
+        throw new Error(errorMessage)
       }
 
       // Get raw response text
@@ -51,7 +64,15 @@ export default function Home() {
         setOutput(responseText)
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      // Handle different types of errors
+      if (err instanceof TypeError && err.message.includes('fetch')) {
+        setError('Network error: Please check your internet connection and try again.')
+      } else if (err instanceof Error) {
+        setError(err.message)
+      } else {
+        setError('An unexpected error occurred. Please try again.')
+      }
+      console.error('Error generating program:', err)
     } finally {
       setLoading(false)
     }
