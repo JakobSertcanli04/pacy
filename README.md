@@ -1,4 +1,5 @@
 # Pacy Training Program Generator
+<img width="1058" height="199" alt="image" src="https://github.com/user-attachments/assets/5fb3a879-b5f3-47ed-8e38-31b8a114ff79" />
 
 A Next.js application that generates training programs from client briefs. The app connects to a webhook that orchestrates multiple AI agents (topic research, writer agent, quality control) to create comprehensive training materials.
 
